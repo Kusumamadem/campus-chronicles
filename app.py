@@ -132,6 +132,26 @@ async def do_login(
     
     else:
         return JSONResponse(status_code=401, content={"message": "Wrong credentials"})
+
+@app.post("/create")
+async def create_post(request: Request, title: str = Form(...), category: str = Form(...), content: str = Form(...)):
+    # Store the data in the PostgreSQL database
+    cur = conn.cursor()
+    cur.execute("INSERT INTO postdetail (category, title, matter) VALUES (%s, %s, %s)", (category, title, content))
+    conn.commit()
+    cur.close()
+
+    # Construct the template filename based on the category
+    template_filename = f"{category}.html"
+
+    context = {
+        "request": request,
+        "title": title,
+        "category": category,
+        "content": content
+    }
+
+    return templates.TemplateResponse(template_filename, context)
     
     
 if __name__ == '__main__':

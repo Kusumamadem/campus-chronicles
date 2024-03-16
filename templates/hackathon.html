@@ -33,7 +33,7 @@
   <link rel="stylesheet" href="./static/sports.css">
   <link rel="stylesheet" href="./static/style.css">
 </head>
-<h1 style="display: flex;flex-direction: row;justify-content: center;">Sports</h1>
+<h1 style="display: flex;flex-direction: row;justify-content: center;">Hackathons</h1>
 <button class="btn btn-primary" id="goToIndexButton">
   <i class='fas fa-arrow-left' style='font-size:24px'></i>
 </button>
@@ -42,7 +42,7 @@
   <div class="container">
     <div class="card feature-card">
       <figure class="card-banner img-holder medium-banner">
-        <img src="./static/featured-4.png" loading="lazy" alt="Self-observation is the first step of inner unfolding" class="img-cover">
+        <img src="./static/hack1.jpg" loading="lazy" alt="Self-observation is the first step of inner unfolding" class="img-cover">
       </figure>
     </div>
   </div>
@@ -64,7 +64,7 @@
   <div class="container">
     <div class="card feature-card">
       <figure class="card-banner img-holder medium-banner">
-        <img src="./static/topic-1.png" loading="lazy"  class="img-cover">
+        <img src="./static/hack2.jpg" loading="lazy"  class="img-cover">
       </figure>
     </div>
   </div>
@@ -82,13 +82,48 @@
     </h4>
   </div>
 
+  <div id="dynamicContent"></div>
+
+
+ 
   <script>
     document.getElementById("goToIndexButton").addEventListener("click", function() {
       // Redirect to index.html
       window.location.href = "/index1";
     });
+
+
+    function createCardContent(title, content) {
+      var dynamicContent = document.getElementById("dynamicContent");
+      var cardContentDiv = document.createElement("div");
+      cardContentDiv.classList.add("card-content");
+
+      // Populate the card-content div with title and content
+      cardContentDiv.innerHTML = `
+        <div class="card-wrapper">
+          <div class="wrapper">
+            <ion-icon name="time-outline" aria-hidden="true"></ion-icon>
+          </div>
+        </div>
+        <h3 class="headline headline-3">
+          <a href="#" class="card-title hover-2">${title}</a>
+        </h3>
+        <h4>
+          ${content}
+        </h4>`;
+
+      dynamicContent.appendChild(cardContentDiv);
+    }
+
+    var titleFromApp = "{{ title }}"; // Replace with actual title variable from app.py
+    var contentFromApp = "{{ content }}"; // Replace with actual content variable from app.py
+    createCardContent(titleFromApp, contentFromApp);
+
   </script>
 
 </body>
 
 </html>
+
+
+
