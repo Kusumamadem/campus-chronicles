@@ -33,7 +33,7 @@
   <link rel="stylesheet" href="./static/sports.css">
   <link rel="stylesheet" href="./static/style.css">
 </head>
-<h1 style="display: flex;flex-direction: row;justify-content: center;">clubs</h1>
+<h1 style="display: flex;flex-direction: row;justify-content: center;">Culturals</h1>
 <button class="btn btn-primary" id="goToIndexButton">
   <i class='fas fa-arrow-left' style='font-size:24px'></i>
 </button>
@@ -117,6 +117,23 @@ https://www.instagram.com/p/C4PFeWEvMBt/?igsh=NjZiM2M3MzIxNA==<br>
 
     // Clear entire stored content from Local Storage
     // localStorage.removeItem("culturalstoredContent");
+
+    function countContainersWithImages() {
+    var containersWithImages = document.querySelectorAll('.container img').length;
+      
+      // Count containers with images from local storage
+      var culturalstoredContent = JSON.parse(localStorage.getItem("culturalstoredContent")) || [];
+      culturalstoredContent.forEach(function(item) {
+        if (item.imgdata) {
+          containersWithImages++;
+        }
+      });
+
+      return containersWithImages;
+    }
+   var containerCount = countContainersWithImages();
+ 
+    localStorage.setItem("culturalcount", containerCount);
   
     document.getElementById("goToIndexButton").addEventListener("click", function() {
       // Redirect to index.html

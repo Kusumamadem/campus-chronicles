@@ -88,6 +88,25 @@
 
     // Clear entire stored content from Local Storage
     // localStorage.removeItem("sportstoredContent");
+
+    function countContainersWithImages() {
+    var containersWithImages = document.querySelectorAll('.container img').length;
+      
+      // Count containers with images from local storage
+      var sportstoredContent = JSON.parse(localStorage.getItem("sportstoredContent")) || [];
+      sportstoredContent.forEach(function(item) {
+        if (item.imgdata) {
+          containersWithImages++;
+        }
+      });
+
+      return containersWithImages;
+    }
+
+    // Example usage:
+    var containerCount = countContainersWithImages();
+
+    localStorage.setItem("sportcount", containerCount);
   
     document.getElementById("goToIndexButton").addEventListener("click", function() {
       // Redirect to index.html
