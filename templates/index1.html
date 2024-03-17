@@ -37,6 +37,53 @@
   <link rel="preload" as="image" href="./static/pattern-2.svg">
   <link rel="preload" as="image" href="./static/pattern-3.svg">
 
+  <style>
+  
+
+    .container {
+        max-width: 1200px; /* Set maximum width */
+        margin: 0 auto; /* Center align container */
+        padding: 0 15px; /* Add padding to container */
+    }
+    
+    .row {
+        display: flex; /* Use flexbox for row layout */
+        flex-wrap: wrap; /* Allow row to wrap on smaller screens */
+    }
+    
+    .col-12 {
+        flex: 0 0 100%; /* Set column width to full width on smaller screens */
+        max-width: 100%; /* Set maximum width */
+    }
+    
+    .col-md-3 {
+        flex: 0 0 25%; /* Set column width to 25% on medium screens and above */
+        max-width: 25%; /* Set maximum width */
+        padding: 0 15px; /* Add padding to column */
+    }
+    
+    .col-md-6 {
+        flex: 0 0 50%; /* Set column width to 50% on medium screens and above */
+        max-width: 50%; /* Set maximum width */
+        padding: 0 15px; /* Add padding to column */
+    }
+    
+    .des1 {
+        display: flex; /* Use flexbox for column layout */
+        flex-direction: column; /* Arrange items vertically */
+        justify-content: center; /* Center content vertically */
+        text-align: center; /* Center text */
+    }
+    
+        
+          .footer-section {
+              padding-top: 20px;
+              padding-bottom: 20px;
+              /*background-color: #152632;*/
+              color:rgb(199, 198, 198);
+          }
+      </style>
+
 </head>
 
 <body id="top">
@@ -319,109 +366,34 @@
   <!-- 
     - #FOOTER
   -->
-  <footer>
-    <section class="Contact" id="contact" aria-label="contact">
-    
+  <div class="footer-section pt-5 pb-5">
     <div class="container">
-      <div class="card footer">
-        <h2 class="headline headline-2 section-title" id="tag-label">
-          <span class="span">Contact</span>
-        </h2>
-        <div class="section footer-top">
-
-          <div class="footer-brand">
-
-            <a href="#" class="logo">
-              <img src="./static/logo.png" width="119" height="37" loading="lazy" alt="Wren logo">
-            </a>
-
-            <p class="footer-text">
-              Connect with us at Campus Chronicles to share your stories, inquiries, and collaborations. We're here to foster dialogue and community engagement within the GVP ecosystem.
-            </p>
-
-            <p class="footer-list-title">Address</p>
-
-            <address class="footer-text address">
-              GVPCE(A) <br>
-              Madhurawada, 530048
-            </address>
-
-          </div>
-
-          <div class="footer-list" >
-            <p class="footer-text">
-              Sign up to be first to receive the latest posts inspiring us, case studies, and events accross college.
-            </p>
-
-            <div class="input-wrapper">
-              <input type="text" name="name" placeholder="Your name" required class="input-field" autocomplete="off">
-
-              <ion-icon name="person-outline" aria-hidden="true"></ion-icon>
+      <h2 class="headline headline-2 section-title" style="font-size: 40px;" id="contact">
+        <span class="span">Contact</span>
+      </h2>
+        <div class="row foot">
+            <div class="des1 col-12 col-md-3">
+                <h1 style="color:white; text-align: center;">Address</h1>
+                <h3 style="text-align: center;">GVPCE(A) <br> Madhurawada, 530048</h3>
             </div>
-
-            <div class="input-wrapper">
-              <input type="email" name="email_address" placeholder="Emaill address" required class="input-field"
-                autocomplete="off">
-
-              <ion-icon name="mail-outline" aria-hidden="true"></ion-icon>
+            <div class="des1 col-12 col-md-6">
+                <img src="./static/logo.png" width="119" height="37" loading="lazy" alt="Wren logo" style="margin: 0 auto 20px; display: block;">
+                <p style="text-align: justify;">Connect with us at Campus Chronicles to share your stories, inquiries, and collaborations. We're here to foster dialogue and community engagement within the GVP ecosystem.</p>
             </div>
-
-            <a href="#" class="btn btn-primary">
-              <span class="span">Signup/Login</span>
-
-              <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
-            </a>
-
-          </div>
-
-          <div class="footer-list">
-            <p class="footer-list-title">Admins Ph:</p>
-            <p class="footer-list-title">9346694903</p>
-            <p class="footer-list-title">9392555763</p>
-            <p class="footer-list-title">8008651603</p>
-            <p class="footer-list-title">7702410610</p>
-
-          </div>
-
+            <div class="des1 col-12 col-md-3">
+                 <h2 style="color:white; text-align: center;">For Any Queries contact</h2>
+                <div style="text-align: center;">
+                    <h4>9346694903</h4>
+                    <h4>9392555763</h4>
+                    <h4>8008651603</h4>
+                    <h4>7702410610</h4>
+                </div>
+            </div>
         </div>
-
-        <div class="footer-bottom">
-
-          <p class="copyright">
-            &copy; Developed by <a href="#" class="copyright-link">GVP Students</a>
-          </p>
-
-          <ul class="social-list">
-
-            <li>
-              <a href="#" class="social-link">
-                <ion-icon name="logo-twitter"></ion-icon>
-
-                <span class="span">Twitter</span>
-              </a>
-            </li>
-
-            <li>
-              <a href="#" class="social-link">
-                <ion-icon name="logo-linkedin"></ion-icon>
-
-                <span class="span">LinkedIn</span>
-              </a>
-            </li>
-
-            <li>
-              <a href="#" class="social-link">
-                <ion-icon name="logo-instagram"></ion-icon>
-
-                <span class="span">Instagram</span>
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
     </div>
-  </section>
-  </footer>
+</div>
+
+
   <!-- - #BACK TO TOP-->
   <a href="#top" class="back-top-btn" aria-label="back to top" data-back-top-btn>
     <ion-icon name="arrow-up-outline" aria-hidden="true"></ion-icon>
