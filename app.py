@@ -8,6 +8,8 @@ import requests
 import subprocess
 from fastapi.responses import RedirectResponse
 import psycopg2
+from typing import Optional
+import base64
 
 
 conn = psycopg2.connect(
@@ -35,9 +37,10 @@ login_password=""
 def index(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})
 
-@app.get('/sports1')
+@app.get('/sports')
 def index(request: Request):
-    return templates.TemplateResponse("sports1.html", {"request": request})
+    return templates.TemplateResponse("sports.html", {"request": request})
+
 @app.get('/hackathon')
 def index(request: Request):
     return templates.TemplateResponse("hackathon.html", {"request": request})
@@ -99,16 +102,42 @@ async def signup(
     cur.close() 
  
     return RedirectResponse("/login", status_code=303)
-@app.post("/publish")
-async def publish_post(title: str = Form(...), category: str = Form(...), content: str = Form(...)):
-    try:
-        # Store the data in the PostgreSQL database
-        cur.execute("INSERT INTO postdetail (category,title,matter) VALUES (%s, %s, %s)", (category,title, content))
-        conn.commit()
-        return {"success": True}
-    except Exception as e:
-        return JSONResponse(status_code=500, content={"success": False, "message": str(e)})
 
+
+
+@app.post("/create")
+async def create_post(request: Request, title: str = Form(...), category: str = Form(...), content: str = Form(...),image: UploadFile = File(...)):
+    # Store the data in the PostgreSQL database
+    cur = conn.cursor()
+    cur.execute("INSERT INTO postdetail (category, title, matter) VALUES (%s, %s, %s)", (category, title, content))
+    conn.commit()
+    cur.close()
+
+
+    with open(f"images/{image.filename}", "wb") as f:
+        f.write(image.file.read())
+
+    
+
+    # Encode the image as base64 to include it in the context
+    with open(f"images/{image.filename}", "rb") as f:
+        image_data = f.read()
+        image_base64 = base64.b64encode(image_data).decode("utf-8")
+
+
+    # Construct the template filename based on the category
+    template_filename = f"{category}.html"
+    
+
+    context = {
+        "request": request,
+        "title": title,
+        "category": category,
+        "content": content,
+        "image_data": image_base64
+    }
+
+    return templates.TemplateResponse(template_filename, context)
 
 
 
@@ -132,26 +161,6 @@ async def do_login(
     
     else:
         return JSONResponse(status_code=401, content={"message": "Wrong credentials"})
-
-@app.post("/create")
-async def create_post(request: Request, title: str = Form(...), category: str = Form(...), content: str = Form(...)):
-    # Store the data in the PostgreSQL database
-    cur = conn.cursor()
-    cur.execute("INSERT INTO postdetail (category, title, matter) VALUES (%s, %s, %s)", (category, title, content))
-    conn.commit()
-    cur.close()
-
-    # Construct the template filename based on the category
-    template_filename = f"{category}.html"
-
-    context = {
-        "request": request,
-        "title": title,
-        "category": category,
-        "content": content
-    }
-
-    return templates.TemplateResponse(template_filename, context)
     
     
 if __name__ == '__main__':
