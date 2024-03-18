@@ -3,7 +3,6 @@ from fastapi import FastAPI, Request, File, UploadFile,Form
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
-from fastapi import HTTPException
 import os
 import requests
 import subprocess
@@ -11,7 +10,6 @@ from fastapi.responses import RedirectResponse
 import psycopg2
 from typing import Optional
 import base64
-
 
 
 conn = psycopg2.connect(
@@ -93,35 +91,10 @@ def login(request: Request):
 def sign(request: Request):
     return templates.TemplateResponse("signup.html", {"request": request})
 
-def validate_email(email: str) -> bool:
-    # Define regular expression for GVPCE email validation
-    import re
-    email_reg = re.compile(r'^[a-zA-Z0-9._%+-]+@gvpce\.ac\.in$')
-    return bool(email_reg.match(email))
-
-def validate_password(password: str) -> bool:
-    # Password must be at least 6 characters long and contain at least one capital letter,
-    # one special symbol, and one number
-    if len(password) < 6:
-        return False
-    if not any(char.isupper() for char in password):
-        return False
-    if not any(char.isdigit() for char in password):
-        return False
-    if not any(char in '!@#$%^&' for char in password):
-        return False
-    return True
-
 @app.post("/sign")
 async def signup(
     request: Request, username: str = Form(...), email: str = Form(...),password: str = Form(...),password1:str = Form(...) 
 ):
-    if not validate_email(email):
-        raise HTTPException(status_code=400, detail="Please enter a valid GVPCE email address")
-
-    # Validate password
-    if not validate_password(password):
-        raise HTTPException(status_code=400, detail="Password must be at least 6 characters long and contain at least one capital letter, one special symbol, and one number")
    
     cur = conn.cursor()
     cur.execute("INSERT INTO details (name,email,password1,password2) VALUES (%s, %s,%s, %s)", (username,email,password,password1))
