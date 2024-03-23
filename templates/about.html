@@ -1,16 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="./static/style.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
-    body{
-    /*background-image: url('https://img.freepik.com/free-photo/blue-smooth-wall-textured-background_53876-106133.jpg?w=996&t=st=1710566366~exp=1710566966~hmac=a897db66da8e9573e65b52bdefe3e0153f6f2d6eaa1e2a4c452dfb823c0f367b');*/
-    background-repeat: no-repeat;
-    background-size: cover;
-}
 .card {
-  background-color: white;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   max-width: 400px;
   margin: auto;
@@ -29,17 +22,30 @@ button {
   display: inline-block;
   padding: 8px;
   color: white;
-  background-color: #3f9ce8;
+  background-color: #11c3e2;
   text-align: center;
   cursor: pointer;
   width: 100%;
-  font-size: 22px;
+  font-size: 18px;
 }
 
 a {
   text-decoration: none;
   font-size: 22px;
   color: black;
+}
+.back-button {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  color: white;
+  background-color: #11c3e2;
+  border-radius: 10px;
+  width: 80px;
+  align-items: center;
+  text-align: center;
+  padding: 10px;
+
 }
 
 button:hover, a:hover {
@@ -49,16 +55,18 @@ button:hover, a:hover {
 </head>
 <body>
 
+
+  <a class="back-button" href="/index1"><i class="fa fa-arrow-left"></i> </a>  
 <h2 style="text-align:center">User Profile Card</h2>
 
 <div class="card">
-  <img src="./static/avatar.jpg" alt="John" style="width:87%">
-  <h1><span style="color: #3f9ce8;">Name : </span>{{name}}</h1>
-  <h2><span style="color: #3f9ce8;">Mail : </span>{{password}}</h2>
-  <h2><span style="color: #3f9ce8;">Password : </span></h2>
-  
+  <img src="./static/avatar.jpg" alt="User Avatar" style="width:87%">
+  <h1><span style="color: #11c3e2;">Username : </span>{{ existing_user[0] }}</h1>
+  <h2><span style="color: #11c3e2;">Email : </span>{{ existing_user[1] }}</h2>
+  <h2><span style="color: #11c3e2;">Password : </span>{{ existing_user[2] }}</h2>
+  <!-- Additional content if needed -->
  
-  <p><button>My Profile</button></p>
+  <p><button > <span style="opacity: 0;">+919494212599</span></button></p>
 </div>
 
 </body>

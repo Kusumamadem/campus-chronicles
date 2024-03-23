@@ -64,6 +64,16 @@
       World Wildlife Day urges individuals, organizations, and governments to unite in the conservation of wildlife, highlighting its vital role in sustainable development and human well-being.🌺🦓🌎<br> 
     </h4>
   </div>
+  <div style="text-align: center; display:flex; flex-direction: column; justify-content: center;" >
+    <h1>Please add your comment</h1>
+      <div id="comment-container2">
+          <!-- Existing comments will go here -->
+      </div>
+      <center>
+      <textarea name="" id="new-comment2" cols="60" rows="5" style="width: 400px;text-align: center;"></textarea>
+      <br>
+      <button id="btn-post2" class="btn-primary" style="background-color: aqua; border-radius: 10px;width: 100px;color: rgb(1, 21, 39);">Post</button></center>
+    </div>
 
   <div class="container">
     <div class="card feature-card">
@@ -85,6 +95,16 @@
       NSS Fitness Challenge: Engage in various physical activities and competitions to promote fitness and well-being within our college community<br> 
     </h4>
   </div>
+  <div style="text-align: center; display:flex; flex-direction: column; justify-content: center;" >
+    <h1>Please add your comment</h1>
+      <div id="comment-container3">
+          <!-- Existing comments will go here -->
+      </div>
+      <center>
+      <textarea name="" id="new-comment3" cols="60" rows="5" style="width: 400px;text-align: center;"></textarea>
+      <br>
+      <button id="btn-post3" class="btn-primary" style="background-color: aqua; border-radius: 10px;width: 100px;color: rgb(1, 21, 39);">Post</button></center>
+    </div>
   <div id="dynamicContent"></div>
 
 
@@ -92,9 +112,46 @@
   <script>
 
     // Clear entire stored content from Local Storage
-    // localStorage.removeItem("clubstoredContent");
+    //localStorage.removeItem("clubstoredContent");
   
-    
+    document.getElementById("btn-post2").addEventListener("click", function () {
+    // This line sets up an event listener for the click event on the "Post" button.
+    // When the button is clicked, the function provided as the second argument will run.
+
+    // Step 2: Get the comment from the textarea
+    const newComment = document.getElementById("new-comment2").value;
+
+    // Step 3: Create a new paragraph element for the comment
+    const commentContainer = document.getElementById("comment-container2");
+    const commentElement = document.createElement("p");
+    commentElement.innerText = newComment;
+
+    // Step 4: Append the comment to the comment container
+    commentContainer.appendChild(commentElement);
+
+    // Clear the textarea after posting the comment
+    document.getElementById("new-comment2").value = "";
+});
+document.getElementById("btn-post3").addEventListener("click", function () {
+    // This line sets up an event listener for the click event on the "Post" button.
+    // When the button is clicked, the function provided as the second argument will run.
+
+    // Step 2: Get the comment from the textarea
+    const newComment = document.getElementById("new-comment3").value;
+
+    // Step 3: Create a new paragraph element for the comment
+    const commentContainer = document.getElementById("comment-container3");
+    const commentElement = document.createElement("p");
+    commentElement.innerText = newComment;
+
+    // Step 4: Append the comment to the comment container
+    commentContainer.appendChild(commentElement);
+
+    // Clear the textarea after posting the comment
+    document.getElementById("new-comment3").value = "";
+});
+
+
     function countContainersWithImages() {
     var containersWithImages = document.querySelectorAll('.container img').length;
     

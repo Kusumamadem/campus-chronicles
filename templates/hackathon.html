@@ -61,6 +61,17 @@
     </h4>
   </div>
 
+  <div style="text-align: center; display:flex; flex-direction: column; justify-content: center;" >
+    <h1>Please add your comment</h1>
+      <div id="comment-container4">
+          <!-- Existing comments will go here -->
+      </div>
+      <center>
+      <textarea name="" id="new-comment4" cols="60" rows="5" style="width: 400px;text-align: center;"></textarea>
+      <br>
+      <button id="btn-post4" class="btn-primary" style="background-color: aqua; border-radius: 10px;width: 100px;color: rgb(1, 21, 39);">Post</button></center>
+    </div>
+
   <div class="container">
     <div class="card feature-card">
       <figure class="card-banner img-holder medium-banner">
@@ -81,6 +92,16 @@
       Get ready to participate<br> 
     </h4>
   </div> 
+  <div style="text-align: center; display:flex; flex-direction: column; justify-content: center;" >
+    <h1>Please add your comment</h1>
+      <div id="comment-container5">
+          <!-- Existing comments will go here -->
+      </div>
+      <center>
+      <textarea name="" id="new-comment5" cols="60" rows="5" style="width: 400px;text-align: center;"></textarea>
+      <br>
+      <button id="btn-post5" class="btn-primary" style="background-color: aqua; border-radius: 10px;width: 100px;color: rgb(1, 21, 39);">Post</button></center>
+    </div>
   <div id="dynamicContent"></div>
 
 
@@ -88,7 +109,44 @@
   <script>
 
     // Clear entire stored content from Local Storage
-    localStorage.removeItem("storedContent");
+    //localStorage.removeItem("storedContent");
+
+    document.getElementById("btn-post4").addEventListener("click", function () {
+    // This line sets up an event listener for the click event on the "Post" button.
+    // When the button is clicked, the function provided as the second argument will run.
+
+    // Step 2: Get the comment from the textarea
+    const newComment = document.getElementById("new-comment4").value;
+
+    // Step 3: Create a new paragraph element for the comment
+    const commentContainer = document.getElementById("comment-container4");
+    const commentElement = document.createElement("p");
+    commentElement.innerText = newComment;
+
+    // Step 4: Append the comment to the comment container
+    commentContainer.appendChild(commentElement);
+
+    // Clear the textarea after posting the comment
+    document.getElementById("new-comment4").value = "";
+});
+document.getElementById("btn-post5").addEventListener("click", function () {
+    // This line sets up an event listener for the click event on the "Post" button.
+    // When the button is clicked, the function provided as the second argument will run.
+
+    // Step 2: Get the comment from the textarea
+    const newComment = document.getElementById("new-comment5").value;
+
+    // Step 3: Create a new paragraph element for the comment
+    const commentContainer = document.getElementById("comment-container5");
+    const commentElement = document.createElement("p");
+    commentElement.innerText = newComment;
+
+    // Step 4: Append the comment to the comment container
+    commentContainer.appendChild(commentElement);
+
+    // Clear the textarea after posting the comment
+    document.getElementById("new-comment5").value = "";
+});
 
     function countContainersWithImages() {
     var containersWithImages = document.querySelectorAll('.container img').length;

@@ -141,26 +141,25 @@ async def create_post(request: Request, title: str = Form(...), category: str = 
 
 
 
-@app.post("/login")
+@app.post("/login",response_class=HTMLResponse)
 async def do_login(
     request: Request,
     username: str = Form(...),
     password: str = Form(...),
 ):
-    login_username=username
-    login_password=password
-
     cur = conn.cursor()
     cur.execute("SELECT * FROM details WHERE name=%s and password1=%s", (username,password))
     existing_user = cur.fetchone()
     cur.close()
     
+    print(username)
+    print(password)
     if existing_user:
         print(existing_user)
-        return RedirectResponse("/index1", status_code=303)
+        return templates.TemplateResponse("about.html",{"request": request, "username": username, "password": password,"existing_user": existing_user})
     
     else:
-        return JSONResponse(status_code=401, content={"message": "Wrong credentials"})
+        return HTMLResponse(status_code=401, content="Wrong credentials")
     
     
 if __name__ == '__main__':
