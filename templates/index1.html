@@ -4,42 +4,19 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- 
-    - primary meta tags
-  -->
   <title>GVP Blog Website</title>
   <meta name="title" content="GVP Blog Website">
   <meta name="description" content="This is a blog ">
-
-  <!-- 
-    - favicon
-  -->
   <link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml">
-
-  <!-- 
-    - google font link
-  -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600;700;800&display=swap"
-    rel="stylesheet">
-
-  <!-- 
-    - custom css link
-  -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./static/style.css">
-
-  <!-- 
-    - preload images
-  -->
   <link rel="preload" as="image" href="./static/hero-banner.png">
   <link rel="preload" as="image" href="./static/pattern-2.svg">
   <link rel="preload" as="image" href="./static/pattern-3.svg">
 
   <style>
-  
-
     .container {
         max-width: 1200px; /* Set maximum width */
         margin: 0 auto; /* Center align container */
@@ -73,9 +50,7 @@
         flex-direction: column; /* Arrange items vertically */
         justify-content: center; /* Center content vertically */
         text-align: center; /* Center text */
-    }
-    
-        
+    }        
           .footer-section {
               padding-top: 20px;
               padding-bottom: 20px;
@@ -87,11 +62,6 @@
 </head>
 
 <body id="top">
-
-  <!-- 
-    - #HEADER
-  -->
-
   <header class="header" data-header>
     <div class="container">
       <div style="display: flex;flex-direction: row; align-items: center;">
@@ -107,8 +77,6 @@
           <a href="#" class="logo">
             <img src="./static/hero-banner.png" width="80" height="30" alt="Wren logo">
           </a>
-
-
           <button class="nav-close-btn" aria-label="close menu" data-nav-toggler>
             <ion-icon name="close-outline" aria-hidden="true"></ion-icon>
           </button>
@@ -123,13 +91,6 @@
           <li>
             <a href="#topics" class="navbar-link hover-1" data-nav-toggler>Services</a>
           </li>
-
-          <!--<li>
-            <a href="#featured" class="navbar-link hover-1" data-nav-toggler>Featured Post</a>
-          </li>
-
-          -->
-
           <li>
             <a href="#contact" class="navbar-link hover-1" data-nav-toggler>Contact</a>
           </li>
@@ -141,53 +102,11 @@
 
         <div class="navbar-bottom">
 
-          <div class="profile-card">
+         <div class="profile-card">
             <img src="./static/author-1.png" width="48" height="48" alt="Steven" class="profile-banner">
-
-            <div>
-              <p class="card-title">Hello Steven !</p>
-
-              <p class="card-subtitle">
-                You have 3 new messages
-              </p>
-            </div>
           </div>
 
-          <ul class="link-list">
-
-            <li>
-              <a href="#" class="navbar-bottom-link hover-1">Profile</a>
-            </li>
-
-            <li>
-              <a href="#" class="navbar-bottom-link hover-1">Articles Saved</a>
-            </li>
-
-            <li>
-              <a href="#" class="navbar-bottom-link hover-1">Add New Post</a>
-            </li>
-
-            <li>
-              <a href="#" class="navbar-bottom-link hover-1">My Likes</a>
-            </li>
-
-            <li>
-              <a href="#" class="navbar-bottom-link hover-1">Account Setting</a>
-            </li>
-
-            <li>
-              <a href="#" class="navbar-bottom-link hover-1">Sign Out</a>
-            </li>
-
-          </ul>
-
         </div>
-
-        <p class="copyright-text">
-          Copyright 2022 © Wren - Personal Blog Template.
-          Developed by GVp Students
-        </p>
-
       </nav>
 
       <a href="/about" class="btn btn-primary">Profile</a>
@@ -201,11 +120,6 @@
 
   <main>
     <article>
-
-      <!-- 
-        - #HERO
-      -->
-
       <section class="hero" id="home" aria-label="home" style="height: 100vh; display: flex; flex-direction: column; justify-content: center;">
         <div class="container">
 
@@ -239,15 +153,6 @@
 
         </div>
       </section>
-
-
-
-
-
-      <!-- 
-        - #SERVICES
-      -->
-
       <section class="topics" id="topics" aria-labelledby="topic-label" style="height: 100vh; display: flex; flex-direction: column; justify-content: center;">
         <div class="container">
           <h2 class="headline headline-2 section-title" style="font-size: 40px;">
@@ -365,9 +270,6 @@
       </section>
     </article>
   </main>
-  <!-- 
-    - #FOOTER
-  -->
   <div class="footer-section pt-5 pb-5">
     <div class="container">
       <h2 class="headline headline-2 section-title" style="font-size: 40px;" id="contact">
@@ -394,21 +296,10 @@
         </div>
     </div>
 </div>
-
-
-  <!-- - #BACK TO TOP-->
   <a href="#top" class="back-top-btn" aria-label="back to top" data-back-top-btn>
     <ion-icon name="arrow-up-outline" aria-hidden="true"></ion-icon>
   </a>
-
-  <!-- 
-    - custom js link
-  -->
   <script src="./static/script.js"></script>
-
-  <!-- 
-    - ionicon link
-  -->
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
   <script>

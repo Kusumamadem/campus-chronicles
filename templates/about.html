@@ -2,6 +2,7 @@
 <html>
 <head>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="./static/style.css">
 <style>
 .card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -60,11 +61,16 @@ button:hover, a:hover {
 <h2 style="text-align:center">User Profile Card</h2>
 
 <div class="card">
-  <img src="./static/avatar.jpg" alt="User Avatar" style="width:87%">
+  <center><img src="./static/avatar.jpg" alt="User Avatar" style="width:60%; height: 60%;"></center>
   <h1><span style="color: #11c3e2;">Username : </span>{{ existing_user[0] }}</h1>
   <h2><span style="color: #11c3e2;">Email : </span>{{ existing_user[1] }}</h2>
-  <h2><span style="color: #11c3e2;">Password : </span>{{ existing_user[2] }}</h2>
-  <!-- Additional content if needed -->
+  <!-- <h2><span style="color: #11c3e2;">Password : </span>{{ existing_user[2] }}</h2>
+   Additional content if needed -->
+   <center><a href="/index" class="btn btn-primary" >Logout </a> </center>
+
+      <button class="nav-open-btn" aria-label="open menu" data-nav-toggler>
+        <ion-icon name="menu-outline" aria-hidden="true"></ion-icon>
+      </button>
  
   <p><button > <span style="opacity: 0;">+919494212599</span></button></p>
 </div>

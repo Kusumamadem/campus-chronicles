@@ -83,6 +83,10 @@ def about(request: Request):
     return templates.TemplateResponse("about.html", context)
 
 
+@app.get('/index')
+def logout(request: Request):
+    return templates.TemplateResponse("index.html", {"request": request})
+
 @app.get('/login')
 def login(request: Request):
     return templates.TemplateResponse("login.html", {"request": request})
