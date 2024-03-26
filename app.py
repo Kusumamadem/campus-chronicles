@@ -1,5 +1,5 @@
 import uvicorn
-from fastapi import FastAPI, Request, File, UploadFile,Form
+from fastapi import FastAPI, Request, File, UploadFile,Form,Query
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
@@ -40,7 +40,6 @@ def index(request: Request):
 @app.get('/sports')
 def index(request: Request):
     return templates.TemplateResponse("sports.html", {"request": request})
-
 @app.get('/hackathon')
 def index(request: Request):
     return templates.TemplateResponse("hackathon.html", {"request": request})
@@ -69,6 +68,21 @@ def index(request: Request):
     return templates.TemplateResponse("index1.html", {"request": request})
 
 @app.get('/about')
+def about(request: Request, username: str = Query(...), password: str = Query(...)):
+    cur = conn.cursor()
+    cur.execute("SELECT * FROM details WHERE name = %s AND password1 = %s", (username, password))
+    existing_user = cur.fetchone()
+    cur.close()
+
+    context = {
+        "request": request,
+        "existing_user": existing_user,
+    }
+
+    return templates.TemplateResponse("about.html", context)
+
+
+@app.get('/about')
 def about(request: Request):
 
     print(login_username + "res")
@@ -81,11 +95,6 @@ def about(request: Request):
     } 
 
     return templates.TemplateResponse("about.html", context)
-
-
-@app.get('/index')
-def logout(request: Request):
-    return templates.TemplateResponse("index.html", {"request": request})
 
 @app.get('/login')
 def login(request: Request):
@@ -101,10 +110,19 @@ async def signup(
 ):
    
     cur = conn.cursor()
-    cur.execute("INSERT INTO details (name,email,password1,password2) VALUES (%s, %s,%s, %s)", (username,email,password,password1))
+    cur.execute("SELECT * FROM details WHERE name = %s OR email = %s", (username, email))
+    existing_user = cur.fetchone()
+    cur.close()
+
+    if existing_user:
+        # If user already exists, raise an HTTPException with status code 409 (Conflict)
+        raise HTTPException(status_code=409, detail="User already exists")
+
+    # If the user does not exist, insert their details into the database
+    cur = conn.cursor()
+    cur.execute("INSERT INTO details (name, email, password1, password2) VALUES (%s, %s, %s, %s)", (username, email, password, password1))
     conn.commit()
-    cur.close() 
- 
+    cur.close()
     return RedirectResponse("/login", status_code=303)
 
 
@@ -152,7 +170,7 @@ async def do_login(
     password: str = Form(...),
 ):
     cur = conn.cursor()
-    cur.execute("SELECT * FROM details WHERE name=%s and password1=%s", (username,password))
+    cur.execute("SELECT * FROM details WHERE email=%s and password1=%s", (username,password))
     existing_user = cur.fetchone()
     cur.close()
     
@@ -165,6 +183,7 @@ async def do_login(
     else:
         return HTMLResponse(status_code=401, content="Wrong credentials")
     
+
     
 if __name__ == '__main__':
     uvicorn.run(app, host='0.0.0.0', port=8000)

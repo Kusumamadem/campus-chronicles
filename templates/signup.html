@@ -200,7 +200,7 @@ button{
                 alert("Sign up successful!");
                 window.location.href = '/login'; // Redirect to login page
             } else {
-                alert("Error signing up. Please try again.");
+                alert("Error signing up or user already exist");
             }
         })
         .catch(error => console.error('Error:', error));
